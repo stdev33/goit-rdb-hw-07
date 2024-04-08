@@ -1,0 +1,41 @@
+-- p1:
+
+USE mydb;
+
+SELECT 
+    id,
+    date,
+    YEAR(date) AS Year,
+    MONTH(date) AS Month,
+    DAY(date) AS Day
+FROM orders;
+
+-- p2:
+
+SELECT 
+    id,
+    date AS OriginalDate,
+    date + INTERVAL 1 DAY AS NextDay
+FROM orders;
+
+-- p3:
+
+SELECT 
+    id,
+    date AS OriginalDate,
+    UNIX_TIMESTAMP(date) AS Timestamp
+FROM orders;
+
+-- p4:
+
+SELECT COUNT(*) AS NumberOfOrders
+FROM orders
+WHERE date BETWEEN '1996-07-10 00:00:00' AND '1996-10-08 00:00:00';
+
+-- p5:
+
+SELECT 
+    id, 
+    date,
+    JSON_OBJECT('id', id, 'date', date) AS order_info
+FROM orders;
